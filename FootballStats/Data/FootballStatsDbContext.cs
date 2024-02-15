@@ -6,7 +6,7 @@ namespace FootballStats.Data
     public class FootballStatsDbContext : DbContext
     {
         public DbSet<Footballer> Footballers => Set<Footballer>();
-        public DbSet<Coach> Coach => Set<Coach>();
+        public DbSet<Coach> Coaches => Set<Coach>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

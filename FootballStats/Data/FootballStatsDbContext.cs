@@ -1,4 +1,4 @@
-﻿using FootballStats.Entities;
+﻿using FootballStats.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FootballStats.Data

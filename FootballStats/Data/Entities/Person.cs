@@ -1,5 +1,4 @@
-﻿
-namespace FootballStats.Entities
+﻿namespace FootballStats.Data.Entities
 {
     public class Person : EntityBase
     {

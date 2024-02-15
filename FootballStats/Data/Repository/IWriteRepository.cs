@@ -1,6 +1,6 @@
-﻿using FootballStats.Entities;
+﻿using FootballStats.Data.Entities;
 
-namespace FootballStats.Repository
+namespace FootballStats.Data.Repository
 {
     public interface IWriteRepository<in T> where T : class, IEntity
     {

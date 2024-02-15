@@ -1,6 +1,6 @@
 ﻿using FootballStats.Data;
-using FootballStats.Entities;
-using FootballStats.Repository;
+using FootballStats.Data.Entities;
+using FootballStats.Data.Repository;
 
 var footballers = new List<Footballer>
 {

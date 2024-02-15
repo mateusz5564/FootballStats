@@ -1,8 +1,7 @@
-﻿
-using FootballStats.Entities;
+﻿using FootballStats.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FootballStats.Repository
+namespace FootballStats.Data.Repository
 {
     public class Repository<T> : IRepository<T> where T : class, IEntity
     {

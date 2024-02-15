@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FootballStats.Entities
+namespace FootballStats.Data.Entities
 {
     public interface IEntity
     {

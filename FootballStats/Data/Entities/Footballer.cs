@@ -10,7 +10,7 @@
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName} {Age} years old. #{Number}, {Position}, Games: {Games}, Goals: {Goals}{(CleanSheets != null ? ", Clean sheets: " + CleanSheets : "")}";
+            return $"{Id} - {FirstName} {LastName} {Age} years old. #{Number}, {Position}, Games: {Games}, Goals: {Goals}{(CleanSheets != null ? ", Clean sheets: " + CleanSheets : "")}";
         }
     }
 }

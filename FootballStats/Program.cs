@@ -1,44 +1,66 @@
 ﻿using FootballStats.Data;
 using FootballStats.Data.Entities;
 using FootballStats.Data.Repository;
-
-var footballers = new List<Footballer>
-{
-    new Footballer { FirstName = "Robert", LastName = "Lewandowski", Age = 36, Number = 9, Position = "Striker", Games = 750, Goals = 500},
-    new Footballer { FirstName = "Leo", LastName = "Messi", Age = 36, Number = 10, Position = "Forward", Games = 800, Goals = 600},
-    new Footballer { FirstName = "Łukasz", LastName = "Fabiański", Age = 38, Number = 1, Position = "Goalkeeper", Games = 460, Goals = 0, CleanSheets = 113}
-};
-
-var coaches = new List<Coach>
-{
-    new Coach {FirstName = "Adam", LastName = "Nawałka", Age = 66, Licence = "UEFA Pro", YearsOfExperience = 27, FavoriteFormation = "1-4-4-2"},
-    new Coach {FirstName = "Jurgen", LastName = "Klopp", Age = 56, Licence = "UEFA Pro", YearsOfExperience = 35, FavoriteFormation = "1-4-3-3"}
-};
+using FootballStats.UI;
 
 var context = new FootballStatsDbContext();
 var footballersRepo = new Repository<Footballer>(context);
 var coachesRepo = new Repository<Coach>(context);
 
-AddItems(footballersRepo, footballers);
-AddItems(coachesRepo, coaches);
-PrintAllItems(footballersRepo);
-PrintAllItems(coachesRepo);
+footballersRepo.ItemAdded += EventLogs.Footballer_Added;
+footballersRepo.ItemRemoved += EventLogs.Footballer_Removed;
+coachesRepo.ItemAdded += EventLogs.Coach_Added;
+coachesRepo.ItemRemoved += EventLogs.Coach_Removed;
 
-void AddItems<T>(IRepository<T> repository, IEnumerable<T> items) where T : class, IEntity
+var FootballerUi = new FootballerUi(footballersRepo);
+var CoachUi = new CoachUi(coachesRepo);
+
+bool exitApp = false;
+Console.WriteLine("Welcome to Football Stats. Store information about footballers and coaches.");
+while (exitApp != true)
 {
-    foreach (var item in items)
-    {
-        repository.Add(item);
-    }
+    Console.WriteLine("\n=============== MENU ===============\n");
 
-    repository.Save();
+    Console.WriteLine("----- Footballers -----");
+    Console.WriteLine("1. Display all");
+    Console.WriteLine("2. Add");
+    Console.WriteLine("3. Remove");
+
+    Console.WriteLine("\n----- Coaches -----");
+    Console.WriteLine("5. Display all");
+    Console.WriteLine("6. Add");
+    Console.WriteLine("7. Remove");
+
+    Console.Write("\nSelect option (q to quit): ");
+    string input = Console.ReadLine();
+    Console.WriteLine();
+
+    switch (input)
+    {
+        case "1":
+            Console.WriteLine("All football players:");
+            Utils.PrintAllItems(footballersRepo);
+            break;
+        case "2":
+            FootballerUi.AddFootballer();
+            break;
+        case "3":
+            FootballerUi.RemoveFootballer();
+            break;
+        case "5":
+            Console.WriteLine("All coaches:");
+            Utils.PrintAllItems(coachesRepo);
+            break;
+        case "6":
+            CoachUi.AddCoach();
+            break;
+        case "7":
+            CoachUi.RemoveCoach();
+            break;
+        case "q":
+            exitApp = true;
+            break;
+
+    }
 }
 
-void PrintAllItems<T>(IRepository<T> repository) where T : class, IEntity
-{
-    var items = repository.GetAll();
-    foreach (var item in items)
-    {
-        Console.WriteLine(item);
-    }
-}

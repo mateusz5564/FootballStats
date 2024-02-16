@@ -8,7 +8,7 @@
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName} {Age} years old. Licence: {Licence} Exp: {YearsOfExperience} Fav form: {FavoriteFormation}";
+            return $"{Id} {FirstName} {LastName} {Age} years old. Licence: {Licence} Exp: {YearsOfExperience} Fav form: {FavoriteFormation}";
         }
     }
 }

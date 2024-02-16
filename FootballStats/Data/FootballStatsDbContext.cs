@@ -11,7 +11,7 @@ namespace FootballStats.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseInMemoryDatabase("AppStorage");
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Database=footballStats;Trusted_Connection=True;");
         }
     }
 }

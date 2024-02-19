@@ -1,6 +1,5 @@
 ﻿
 using FootballStats.Data.Entities;
-using FootballStats.Data.Repository;
 
 namespace FootballStats.UI
 {
@@ -42,9 +41,9 @@ namespace FootballStats.UI
 
             return intInput;
         }
-        public static void PrintAllItems<T>(IRepository<T> repository) where T : class, IEntity
+
+        public static void PrintAllItems<T>(IEnumerable<T> items) where T : class, IEntity
         {
-            var items = repository.GetAll();
             foreach (var item in items)
             {
                 Console.WriteLine(item);
